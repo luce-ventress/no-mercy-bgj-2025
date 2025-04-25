@@ -28,4 +28,4 @@ shape = SubResource("BoxShape3D_ypajb")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.638794, -0.110769, 1.42372)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.773904, -0.202817, 0.599948, -0.62451, -0.0870895, 0.776146, -0.105167, -0.975336, -0.19406, 0, 3.99234, 0)
+transform = Transform3D(-0.684139, -0.418379, -0.597422, -0.62451, -0.0870892, 0.776146, -0.376752, 0.904088, -0.201701, 0, 3.99234, 0)

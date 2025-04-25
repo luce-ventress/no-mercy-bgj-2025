@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cunmit2q8k6g6"
-path.s3tc="res://.godot/imported/NoMercy_Player_ksicht.png-539e33c2e1ecf5bc6b7c28fec4090cc6.s3tc.ctex"
+uid="uid://bp87jxl27o2co"
+path.s3tc="res://.godot/imported/NoMercy_Player_Hat_hvezdypattern2.png-829457cfd5c5f92dfc6bab6dd15c0bf9.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "a41c1a748a104a0f5f8b89612f9e2b90"
+"md5": "9e0d46ce842fb20741a1fcbc82d34afa"
 }
 
 [deps]
 
-source_file="res://NoMercy_Player_ksicht.png"
-dest_files=["res://.godot/imported/NoMercy_Player_ksicht.png-539e33c2e1ecf5bc6b7c28fec4090cc6.s3tc.ctex"]
+source_file="res://Assets/Textures/NoMercy_Player_Hat_hvezdypattern2.png"
+dest_files=["res://.godot/imported/NoMercy_Player_Hat_hvezdypattern2.png-829457cfd5c5f92dfc6bab6dd15c0bf9.s3tc.ctex"]
 
 [params]
 

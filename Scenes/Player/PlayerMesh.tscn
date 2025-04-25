@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3 uid="uid://bkk4k8tlumu8t"]
+
+[ext_resource type="Script" uid="uid://cy82rpifu8s14" path="res://Scripts/Player/PlayerBall.gd" id="1_bol3u"]
+[ext_resource type="Texture2D" uid="uid://cunmit2q8k6g6" path="res://Assets/Textures/NoMercy_Player_ksicht.png" id="1_kpjcp"]
+[ext_resource type="PackedScene" uid="uid://dv2pnkcwvcpcd" path="res://Assets/Meshes/NoMercy_Player_Hat.glb" id="2_kne1u"]
+[ext_resource type="Script" uid="uid://o6xp6xpfbql2" path="res://Scripts/Player/PlayerHat.gd" id="3_r6oee"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e80uo"]
+albedo_texture = ExtResource("1_kpjcp")
+
+[node name="PlayerMesh" type="Node3D"]
+script = ExtResource("1_bol3u")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+rings = 15
+material = SubResource("StandardMaterial3D_e80uo")
+
+[node name="NoMercy_Player_Hat" parent="." instance=ExtResource("2_kne1u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000403047, 0, -0.0117805)
+script = ExtResource("3_r6oee")

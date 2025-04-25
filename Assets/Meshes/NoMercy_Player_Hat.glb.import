@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dv2pnkcwvcpcd"
-path="res://.godot/imported/NoMercy_Player_Hat.glb-17ffa6c90231d23f8664f1c63ab220b0.scn"
+path="res://.godot/imported/NoMercy_Player_Hat.glb-3daa25e3b5bd31b5016d806333082c14.scn"
 
 [deps]
 
-source_file="res://NoMercy_Player_Hat.glb"
-dest_files=["res://.godot/imported/NoMercy_Player_Hat.glb-17ffa6c90231d23f8664f1c63ab220b0.scn"]
+source_file="res://Assets/Meshes/NoMercy_Player_Hat.glb"
+dest_files=["res://.godot/imported/NoMercy_Player_Hat.glb-3daa25e3b5bd31b5016d806333082c14.scn"]
 
 [params]
 

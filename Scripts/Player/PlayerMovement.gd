@@ -4,6 +4,7 @@ extends Node
 @export var fall_acceleration = 96
 
 @onready var characterBody = owner as CharacterBody3D
+@onready var playerMesh = owner.get_node("PlayerMesh")
 
 
 
@@ -19,11 +20,14 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("player_left"):
 		desiredVelocity.z -= speed
 		
-	print(desiredVelocity)
-		
 	if not characterBody.is_on_floor():
 		desiredVelocity.y = desiredVelocity.y - (fall_acceleration * delta)
 		
 	characterBody.set_velocity(desiredVelocity)
-		
+	
+	var oldPos = characterBody.get_position()
 	characterBody.move_and_slide()
+	var newPos = characterBody.get_position()
+	var deltaPos = newPos - oldPos
+	
+	playerMesh.on_movement_occured(deltaPos)
