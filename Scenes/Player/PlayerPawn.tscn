@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bontx0lu6c4aw"]
+[gd_scene load_steps=6 format=3 uid="uid://bontx0lu6c4aw"]
 
 [ext_resource type="PackedScene" uid="uid://bkk4k8tlumu8t" path="res://Scenes/Player/PlayerMesh.tscn" id="1_3mnxu"]
 [ext_resource type="Script" uid="uid://ovt4eec1jrg3" path="res://Scripts/Player/PlayerMovement.gd" id="1_8km1k"]
+[ext_resource type="Script" uid="uid://dcycbeu70us3m" path="res://Scripts/Player/PlayerShooting.gd" id="3_0l0su"]
+[ext_resource type="PackedScene" uid="uid://bax3ulu7c3cic" path="res://Scenes/Projectiles/ProjectileBase.tscn" id="4_3kofw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8km1k"]
 radius = 0.25
@@ -26,3 +28,7 @@ current = true
 [node name="PlayerMovement" type="Node" parent="."]
 script = ExtResource("1_8km1k")
 speed = 5.0
+
+[node name="PlayerShooting" type="Node" parent="."]
+script = ExtResource("3_0l0su")
+ProjectileScene = ExtResource("4_3kofw")
