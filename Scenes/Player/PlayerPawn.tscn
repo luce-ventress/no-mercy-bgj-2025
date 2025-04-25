@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bontx0lu6c4aw"]
+
+[ext_resource type="Script" uid="uid://ovt4eec1jrg3" path="res://Scripts/Player/PlayerMovement.gd" id="1_8km1k"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_q3oix"]
+radius = 0.25
+height = 0.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8km1k"]
+radius = 0.25
+height = 1.0
+
+[node name="PlayerPawn" type="CharacterBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = SubResource("SphereMesh_q3oix")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_8km1k")
+
+[node name="CameraRoot" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraRoot"]
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, -6.21424e-08, 3.73277, 1.04264)
+current = true
+
+[node name="PlayerMovement" type="Node" parent="."]
+script = ExtResource("1_8km1k")
+speed = 5.0
