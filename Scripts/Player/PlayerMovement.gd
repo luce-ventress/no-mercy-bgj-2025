@@ -1,7 +1,7 @@
 extends Node
 
-@export var speed: float = 1
-@export var fall_acceleration = 96
+@export var speed: float = 10
+@export var fall_acceleration = 600
 
 @onready var characterBody = owner as CharacterBody3D
 @onready var playerMesh = owner.get_node("PlayerMesh")

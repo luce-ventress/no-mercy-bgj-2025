@@ -21,6 +21,8 @@ shape = SubResource("CapsuleShape3D_8km1k")
 
 [node name="HitArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 4
+collision_mask = 4
 
 [node name="HitShape" type="CollisionShape3D" parent="HitArea"]
 shape = SubResource("SphereShape3D_3kofw")
@@ -34,7 +36,6 @@ current = true
 
 [node name="PlayerMovement" type="Node" parent="."]
 script = ExtResource("1_8km1k")
-speed = 10.0
 
 [node name="PlayerShooting" type="Node" parent="."]
 script = ExtResource("3_0l0su")
@@ -42,8 +43,5 @@ ProjectileScene = ExtResource("4_3kofw")
 
 [node name="PlayerHealth" type="Node" parent="."]
 script = ExtResource("5_vtcqr")
-
-[node name="ProjectileSpawnPos" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3981, 0.544613, 0)
 
 [connection signal="area_entered" from="HitArea" to="PlayerHealth" method="_on_hit_area_area_entered"]

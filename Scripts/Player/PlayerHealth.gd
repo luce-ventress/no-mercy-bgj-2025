@@ -5,9 +5,9 @@ extends Node
 @onready var health_points = player_hat.hat_sizes.size()
 
 func _on_hit_area_area_entered(area: Area3D) -> void:
-	print("hit")
 	player_hat.shrink_hat()
 	health_points -= 1
 	if	(health_points <= 0):
 		print("die")
 		root.remove_child(owner)
+		queue_free()
