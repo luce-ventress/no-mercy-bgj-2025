@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cunmit2q8k6g6"
+uid="uid://byqnt53mdmasi"
 path.s3tc="res://.godot/imported/NoMercy_Player_ksicht.png-2f2eaa572a1707a3b097faf2439d3a0e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "a41c1a748a104a0f5f8b89612f9e2b90"
 }
 
 [deps]
