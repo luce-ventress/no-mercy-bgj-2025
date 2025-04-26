@@ -47,7 +47,7 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.73985, 0.786825, 0.712495)
 
 [node name="MeleeEnemy" parent="." instance=ExtResource("4_ptu34")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.81994, -0.1, -0.885988)
+transform = Transform3D(-0.679667, -0.00101094, 0.733521, -0.000660827, 1, 0.000765891, -0.733521, 3.5796e-05, -0.679667, 2.81994, -0.1, -0.885988)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ptu34")

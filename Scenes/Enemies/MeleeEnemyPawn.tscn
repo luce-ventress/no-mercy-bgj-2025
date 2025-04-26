@@ -1,20 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://buiud1ylj3qrj"]
+[gd_scene load_steps=5 format=3 uid="uid://buiud1ylj3qrj"]
 
 [ext_resource type="Script" uid="uid://dpthrgto3rfda" path="res://Scripts/Enemies/EnemyMovement.gd" id="1_dg6hr"]
 [ext_resource type="PackedScene" uid="uid://d3mim8qfv50tg" path="res://Assets/Meshes/NoMercy_Enemy_Melee.glb" id="2_qta8w"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qta8w"]
-radius = 0.16741
-height = 1.0
+radius = 0.508876
+height = 1.34
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qta8w"]
+size = Vector3(1.52565, 1.09991, 0.288849)
 
 [node name="MeleeEnemy" type="CharacterBody3D"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(7.22, 0, 0, 0, 1.875, 0, 0, 0, 2.945, -0.517053, 0.5, 0)
+[node name="BodyCapsule" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.412149, 0)
 shape = SubResource("CapsuleShape3D_qta8w")
 
 [node name="EnemyMovement" type="Node" parent="."]
 script = ExtResource("1_dg6hr")
 
 [node name="NoMercy_Enemy_Melee" parent="." instance=ExtResource("2_qta8w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.175111, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.207304, 0, 0.00357699)
+
+[node name="SwordBody" type="RigidBody3D" parent="."]
+
+[node name="SwordShape" type="CollisionShape3D" parent="SwordBody"]
+transform = Transform3D(0.93593, 0, 0.352185, 0, 1, 0, -0.352185, 0, 0.93593, -1.36499, 0.679212, 0.233927)
+shape = SubResource("BoxShape3D_qta8w")
