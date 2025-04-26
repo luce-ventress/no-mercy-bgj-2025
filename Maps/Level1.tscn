@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhs00vouueblh"]
+[gd_scene load_steps=10 format=3 uid="uid://dhs00vouueblh"]
 
 [ext_resource type="PackedScene" uid="uid://bontx0lu6c4aw" path="res://Scenes/Player/PlayerPawn.tscn" id="1_l8wyv"]
 [ext_resource type="Texture2D" uid="uid://dw1nyaoxl2v5w" path="res://Assets/Textures/placeholder.png" id="1_ypajb"]
@@ -16,6 +16,13 @@ size = Vector2(200, 200)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ypajb"]
 size = Vector3(200, 0.2, 200)
 
+[sub_resource type="Environment" id="Environment_ptu34"]
+background_energy_multiplier = 3.0
+ambient_light_color = Color(1, 1, 1, 1)
+fog_light_energy = 7.05
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_7bilv"]
+
 [node name="Level1" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -32,10 +39,16 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.638794, -0.110769, 1.42372)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.684139, -0.418379, -0.597422, -0.62451, -0.0870892, 0.776146, -0.376752, 0.904088, -0.201701, 0, 3.99234, 0)
+transform = Transform3D(-0.561376, -0.810499, -0.167182, 0.511137, -0.49846, 0.700197, -0.650843, 0.307621, 0.694099, 0, 3.99234, 0)
+light_energy = 0.2
+shadow_enabled = true
 
 [node name="ProjectileBase" parent="." instance=ExtResource("3_bv8d1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.73985, 0.786825, 0.712495)
 
 [node name="MeleeEnemy" parent="." instance=ExtResource("4_ptu34")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.81994, -0.1, -0.885988)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ptu34")
+camera_attributes = SubResource("CameraAttributesPractical_7bilv")

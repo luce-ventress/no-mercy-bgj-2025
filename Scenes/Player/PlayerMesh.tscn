@@ -17,6 +17,6 @@ rings = 15
 material = SubResource("StandardMaterial3D_e80uo")
 
 [node name="NoMercy_Player_Hat" parent="." instance=ExtResource("2_kne1u")]
-transform = Transform3D(0.940452, 0.940452, 0, -0.940452, 0.940452, 0, 0, 0, 1.33, -0.053134, -0.0306769, 0)
+transform = Transform3D(0.94045, 0.94045, 0, -0.94045, 0.94045, 0, 0, 0, 1.33, -0.176424, -0.176424, 0)
 script = ExtResource("3_r6oee")
 hat_magnitude = 1.0
