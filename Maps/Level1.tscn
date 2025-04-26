@@ -30,6 +30,8 @@ mesh = SubResource("PlaneMesh_nj4d8")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+collision_layer = 8388609
+collision_mask = 8388609
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_ypajb")
@@ -44,10 +46,10 @@ light_energy = 0.2
 shadow_enabled = true
 
 [node name="ProjectileBase" parent="." instance=ExtResource("3_bv8d1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.73985, 0.786825, 0.712495)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 1)
 
 [node name="MeleeEnemy" parent="." instance=ExtResource("4_ptu34")]
-transform = Transform3D(-0.679667, -0.00101094, 0.733521, -0.000660827, 1, 0.000765891, -0.733521, 3.5796e-05, -0.679667, 2.81994, -0.1, -0.885988)
+transform = Transform3D(-0.383661, -0.000960806, 0.923474, -0.000660827, 1, 0.000765891, -0.923474, -0.000316437, -0.383661, 2.81994, -0.1, -0.885988)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ptu34")

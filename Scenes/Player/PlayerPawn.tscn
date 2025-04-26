@@ -1,22 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://bontx0lu6c4aw"]
+[gd_scene load_steps=8 format=3 uid="uid://bontx0lu6c4aw"]
 
 [ext_resource type="PackedScene" uid="uid://bkk4k8tlumu8t" path="res://Scenes/Player/PlayerMesh.tscn" id="1_3mnxu"]
 [ext_resource type="Script" uid="uid://ovt4eec1jrg3" path="res://Scripts/Player/PlayerMovement.gd" id="1_8km1k"]
 [ext_resource type="Script" uid="uid://dcycbeu70us3m" path="res://Scripts/Player/PlayerShooting.gd" id="3_0l0su"]
 [ext_resource type="PackedScene" uid="uid://bax3ulu7c3cic" path="res://Scenes/Projectiles/ProjectileBase.tscn" id="4_3kofw"]
+[ext_resource type="Script" uid="uid://cv8yqinugl4j0" path="res://Scripts/Player/PlayerHealth.gd" id="5_vtcqr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8km1k"]
-radius = 0.25
-height = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3kofw"]
 
 [node name="PlayerPawn" type="CharacterBody3D"]
 
 [node name="PlayerMesh" parent="." instance=ExtResource("1_3mnxu")]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0.5, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+[node name="PlayerMovementCapsule" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_8km1k")
+
+[node name="HitArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="HitShape" type="CollisionShape3D" parent="HitArea"]
+shape = SubResource("SphereShape3D_3kofw")
 
 [node name="CameraRoot" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -32,3 +39,11 @@ speed = 10.0
 [node name="PlayerShooting" type="Node" parent="."]
 script = ExtResource("3_0l0su")
 ProjectileScene = ExtResource("4_3kofw")
+
+[node name="PlayerHealth" type="Node" parent="."]
+script = ExtResource("5_vtcqr")
+
+[node name="ProjectileSpawnPos" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3981, 0.544613, 0)
+
+[connection signal="area_entered" from="HitArea" to="PlayerHealth" method="_on_hit_area_area_entered"]
