@@ -1,13 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://buiud1ylj3qrj"]
+[gd_scene load_steps=13 format=3 uid="uid://buiud1ylj3qrj"]
 
 [ext_resource type="Script" uid="uid://dpthrgto3rfda" path="res://Scripts/Enemies/EnemyMovement.gd" id="1_dg6hr"]
 [ext_resource type="PackedScene" uid="uid://d3mim8qfv50tg" path="res://Assets/Meshes/NoMercy_Enemy_Melee.glb" id="2_qta8w"]
 [ext_resource type="Script" uid="uid://bqfqc2x4cf7ue" path="res://Scripts/Enemies/EnemyMeleeSword.gd" id="3_4ci8v"]
-[ext_resource type="Script" uid="uid://doh6lcg3ck5k0" path="res://Scripts/Enemies/EnemyHealth.gd" id="4_ynbeu"]
 [ext_resource type="AudioStream" uid="uid://bgnv7xobe834m" path="res://Assets/Sound/Enemy/Melee_enemy_attack.wav" id="4_ynbeu"]
 [ext_resource type="AudioStream" uid="uid://csxsij0vm70w0" path="res://Assets/Sound/Player/Melee_impact_1.wav" id="5_74amo"]
 [ext_resource type="AudioStream" uid="uid://b72278cg7i484" path="res://Assets/Sound/Player/Melee_impact_2.wav" id="6_s4yc3"]
 [ext_resource type="AudioStream" uid="uid://bciiv00l1dhrc" path="res://Assets/Sound/Player/Melee_impact_3.wav" id="7_cn7gm"]
+[ext_resource type="Script" uid="uid://doh6lcg3ck5k0" path="res://Scripts/Enemies/EnemyHealth.gd" id="7_s4yc3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qta8w"]
 radius = 0.508876
@@ -54,8 +54,15 @@ pushUp = 20.0
 transform = Transform3D(0.93593, 0, 0.352185, 0, 1, 0, -0.352185, 0, 0.93593, -1.36499, 0.679212, 0.233927)
 shape = SubResource("BoxShape3D_qta8w")
 
+[node name="MeleeEnemySoundNode" type="AudioStreamPlayer3D" parent="SwordArea"]
+stream = ExtResource("4_ynbeu")
+
+[node name="MeleeEnemyPlayerDamage" type="AudioStreamPlayer3D" parent="SwordArea"]
+stream = SubResource("AudioStreamRandomizer_ynbeu")
+volume_db = -3.048
+
 [node name="EnemyHealth" type="Node" parent="."]
-script = ExtResource("4_ynbeu")
+script = ExtResource("7_s4yc3")
 
 [node name="EnemyMovement" type="Node" parent="."]
 script = ExtResource("1_dg6hr")
@@ -65,10 +72,3 @@ rotationSpeed = 2.0
 [connection signal="area_entered" from="HitArea" to="EnemyHealth" method="_on_hit_area_area_entered"]
 [connection signal="area_entered" from="SwordArea" to="SwordArea" method="_on_area_entered"]
 [connection signal="body_entered" from="SwordArea" to="SwordArea" method="_on_body_entered"]
-
-[node name="MeleeEnemySoundNode" type="AudioStreamPlayer3D" parent="SwordArea"]
-stream = ExtResource("4_ynbeu")
-
-[node name="MeleeEnemyPlayerDamage" type="AudioStreamPlayer3D" parent="SwordArea"]
-stream = SubResource("AudioStreamRandomizer_ynbeu")
-volume_db = -3.048
