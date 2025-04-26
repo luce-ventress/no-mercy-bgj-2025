@@ -17,7 +17,7 @@ func _physics_process(delta: float) -> void:
 		desiredVelocity.z += speed
 	if Input.is_action_pressed("player_left"):
 		desiredVelocity.z -= speed
-		
+																											  
 	if not characterBody.is_on_floor():
 		desiredVelocity.y = desiredVelocity.y - (fall_acceleration * delta)
 		

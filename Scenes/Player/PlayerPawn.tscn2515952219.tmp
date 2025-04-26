@@ -27,7 +27,7 @@ current = true
 
 [node name="PlayerMovement" type="Node" parent="."]
 script = ExtResource("1_8km1k")
-speed = 10.0
+speed = 5.0
 
 [node name="PlayerShooting" type="Node" parent="."]
 script = ExtResource("3_0l0su")
