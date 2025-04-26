@@ -1,9 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://buiud1ylj3qrj"]
+[gd_scene load_steps=11 format=3 uid="uid://buiud1ylj3qrj"]
 
 [ext_resource type="Script" uid="uid://dpthrgto3rfda" path="res://Scripts/Enemies/EnemyMovement.gd" id="1_dg6hr"]
 [ext_resource type="PackedScene" uid="uid://d3mim8qfv50tg" path="res://Assets/Meshes/NoMercy_Enemy_Melee.glb" id="2_qta8w"]
 [ext_resource type="Script" uid="uid://bqfqc2x4cf7ue" path="res://Scripts/Enemies/EnemyMeleeSword.gd" id="3_4ci8v"]
 [ext_resource type="Script" uid="uid://doh6lcg3ck5k0" path="res://Scripts/Enemies/EnemyHealth.gd" id="4_ynbeu"]
+[ext_resource type="AudioStream" uid="uid://bgnv7xobe834m" path="res://Assets/Sound/Enemy/Melee_enemy_attack.wav" id="4_ynbeu"]
+[ext_resource type="AudioStream" uid="uid://csxsij0vm70w0" path="res://Assets/Sound/Player/Melee_impact_1.wav" id="5_74amo"]
+[ext_resource type="AudioStream" uid="uid://b72278cg7i484" path="res://Assets/Sound/Player/Melee_impact_2.wav" id="6_s4yc3"]
+[ext_resource type="AudioStream" uid="uid://bciiv00l1dhrc" path="res://Assets/Sound/Player/Melee_impact_3.wav" id="7_cn7gm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qta8w"]
 radius = 0.508876
@@ -14,6 +18,13 @@ size = Vector3(0.835, 0.8, 0.84)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qta8w"]
 size = Vector3(1.52565, 1.09991, 0.288849)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ynbeu"]
+random_pitch = 2.34
+streams_count = 3
+stream_0/stream = ExtResource("5_74amo")
+stream_1/stream = ExtResource("6_s4yc3")
+stream_2/stream = ExtResource("7_cn7gm")
 
 [node name="MeleeEnemy" type="CharacterBody3D"]
 
@@ -54,3 +65,10 @@ rotationSpeed = 2.0
 [connection signal="area_entered" from="HitArea" to="EnemyHealth" method="_on_hit_area_area_entered"]
 [connection signal="area_entered" from="SwordArea" to="SwordArea" method="_on_area_entered"]
 [connection signal="body_entered" from="SwordArea" to="SwordArea" method="_on_body_entered"]
+
+[node name="MeleeEnemySoundNode" type="AudioStreamPlayer3D" parent="SwordArea"]
+stream = ExtResource("4_ynbeu")
+
+[node name="MeleeEnemyPlayerDamage" type="AudioStreamPlayer3D" parent="SwordArea"]
+stream = SubResource("AudioStreamRandomizer_ynbeu")
+volume_db = -3.048

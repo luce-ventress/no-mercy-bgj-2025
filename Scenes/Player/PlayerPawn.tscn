@@ -1,14 +1,28 @@
-[gd_scene load_steps=8 format=3 uid="uid://bontx0lu6c4aw"]
+[gd_scene load_steps=14 format=3 uid="uid://bontx0lu6c4aw"]
 
 [ext_resource type="PackedScene" uid="uid://bkk4k8tlumu8t" path="res://Scenes/Player/PlayerMesh.tscn" id="1_3mnxu"]
 [ext_resource type="Script" uid="uid://ovt4eec1jrg3" path="res://Scripts/Player/PlayerMovement.gd" id="1_8km1k"]
 [ext_resource type="Script" uid="uid://dcycbeu70us3m" path="res://Scripts/Player/PlayerShooting.gd" id="3_0l0su"]
 [ext_resource type="PackedScene" uid="uid://bax3ulu7c3cic" path="res://Scenes/Projectiles/ProjectileBase.tscn" id="4_3kofw"]
+[ext_resource type="AudioStream" uid="uid://blhtknfj1kbb0" path="res://Assets/Sound/Player/Player_shoot.wav" id="5_68rfy"]
 [ext_resource type="Script" uid="uid://cv8yqinugl4j0" path="res://Scripts/Player/PlayerHealth.gd" id="5_vtcqr"]
+[ext_resource type="AudioStream" uid="uid://b7d6dd75co2c" path="res://Assets/Sound/Player/Player_hit_1.wav" id="6_b6njq"]
+[ext_resource type="AudioStream" uid="uid://crompsgu5ht1a" path="res://Assets/Sound/Player/Player_hit_2.wav" id="7_68rfy"]
+[ext_resource type="AudioStream" uid="uid://c65xuwlx01gg8" path="res://Assets/Sound/Player/Player_hit_3.wav" id="8_sxlwj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8km1k"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3kofw"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_sxlwj"]
+streams_count = 1
+stream_0/stream = ExtResource("5_68rfy")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bji6c"]
+streams_count = 3
+stream_0/stream = ExtResource("6_b6njq")
+stream_1/stream = ExtResource("7_68rfy")
+stream_2/stream = ExtResource("8_sxlwj")
 
 [node name="PlayerPawn" type="CharacterBody3D"]
 
@@ -41,7 +55,18 @@ script = ExtResource("1_8km1k")
 script = ExtResource("3_0l0su")
 ProjectileScene = ExtResource("4_3kofw")
 
+[node name="PlayerShoot" type="AudioStreamPlayer3D" parent="PlayerShooting"]
+stream = SubResource("AudioStreamRandomizer_sxlwj")
+volume_db = 5.0
+
 [node name="PlayerHealth" type="Node" parent="."]
 script = ExtResource("5_vtcqr")
+
+[node name="PlayerHit" type="AudioStreamPlayer3D" parent="PlayerHealth"]
+stream = SubResource("AudioStreamRandomizer_bji6c")
+volume_db = -3.0
+
+[node name="ProjectileSpawnPos" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3981, 0.544613, 0)
 
 [connection signal="area_entered" from="HitArea" to="PlayerHealth" method="_on_hit_area_area_entered"]

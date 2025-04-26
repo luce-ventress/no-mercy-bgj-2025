@@ -13,6 +13,8 @@ var shot_cooldown = 0.01
 var current_spawn_pos: Vector3
 var current_spawn_dir: Vector3
 
+var playerShootSound = preload("res://Assets/Sound/Player/Player_shoot.wav")
+
 func _physics_process(delta: float) -> void:
 	current_spawn_dir = get_mouse_direction()
 	current_spawn_pos = owner.position + current_spawn_dir * spawn_dist + Vector3(0, spawn_height, 0)
@@ -25,6 +27,7 @@ func _process(delta: float) -> void:
 			time_since_last_shot = current_time
 			
 func spawn_projectile(position: Vector3, dir: Vector3):
+	$PlayerShoot.play()
 	var projectile = ProjectileScene.instantiate()
 	root.add_child(projectile)
 	projectile.set_position(position)
