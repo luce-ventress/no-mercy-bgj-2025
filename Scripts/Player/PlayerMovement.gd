@@ -6,8 +6,6 @@ extends Node
 @onready var characterBody = owner as CharacterBody3D
 @onready var playerMesh = owner.get_node("PlayerMesh")
 
-
-
 func _physics_process(delta: float) -> void:
 	var desiredVelocity: Vector3 = Vector3(0, 0, 0)
 	

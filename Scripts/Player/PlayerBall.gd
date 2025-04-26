@@ -1,4 +1,4 @@
-extends Node
+extends Node3D
 
 @onready var playerBallMesh = get_node("CSGSphere3D") as Node3D
 

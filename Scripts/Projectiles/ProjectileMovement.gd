@@ -2,6 +2,7 @@ extends Node
 
 @export var speed: float = 1
 
+@onready var characterBody = owner as CharacterBody3D
 @onready var projectileRoot = owner as Node3D
 
 func _physics_process(delta: float) -> void:
