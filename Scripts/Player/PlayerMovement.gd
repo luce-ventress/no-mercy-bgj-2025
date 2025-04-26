@@ -21,6 +21,7 @@ func _physics_process(delta: float) -> void:
 	if not characterBody.is_on_floor():
 		desiredVelocity.y = desiredVelocity.y - (fall_acceleration * delta)
 		
+	desiredVelocity = desiredVelocity.normalized() * speed;
 	characterBody.set_velocity(desiredVelocity)
 	
 	var oldPos = characterBody.get_position()
