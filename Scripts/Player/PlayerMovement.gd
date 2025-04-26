@@ -28,4 +28,5 @@ func _physics_process(delta: float) -> void:
 	var newPos = characterBody.get_position()
 	var deltaPos = newPos - oldPos
 	
-	playerMesh.on_movement_occured(deltaPos)
+	if not deltaPos.is_zero_approx():
+		playerMesh.on_movement_occured(deltaPos)
