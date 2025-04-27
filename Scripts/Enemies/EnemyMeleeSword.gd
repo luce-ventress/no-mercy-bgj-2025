@@ -4,7 +4,7 @@ extends Area3D
 @export var pushUp: float
 
 @onready var movement = owner.get_node("EnemyMovement")
-@onready var PlayerPawn = owner.get_node("%PlayerPawnInstance")
+@onready var PlayerPawn = owner.get_parent().get_node("%PlayerPawnInstance")
 @onready var MeleeEnemy = owner as CharacterBody3D
 
 var hitSound = preload("res://Assets/Sound/Enemy/Melee_enemy_attack.wav")

@@ -9,13 +9,19 @@ func set_projectile_speed(speed: float):
 	pMovement.set_projectile_speed(speed)
 
 
-func _on_area_3d_body_entered(body: Node3D) -> void:
+func _on_area_3d_body_entered(_body: Node3D) -> void:
 	var parent = get_parent()
 	if parent:
 		parent.remove_child.call_deferred(self)
 		queue_free()
 
-func _on_area_3d_area_entered(area: Area3D) -> void:
+func _on_area_3d_area_entered(_area: Area3D) -> void:
+	var parent = get_parent()
+	if parent:
+		parent.remove_child.call_deferred(self)
+		queue_free()
+
+func _on_timer_timeout() -> void:
 	var parent = get_parent()
 	if parent:
 		parent.remove_child.call_deferred(self)

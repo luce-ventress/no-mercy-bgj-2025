@@ -3,6 +3,7 @@ extends Node
 @onready var game_start_time: float = Time.get_unix_time_from_system()
 @onready var PowerupLabel: Label = get_parent().find_child("PowerupLabel", true, false)
 @onready var PowerdownLabel: Label = get_parent().find_child("PowerDown", true, false)
+@onready var SpawnTimer: Timer = get_parent().find_child("SpawnerTimer", true, false)
 
 var dicemax = 100
 var rollToNoMercy = 75
@@ -19,7 +20,10 @@ func reset():
 	game_start_time = Time.get_unix_time_from_system()
 	powerups = 0
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
+	if not SpawnTimer:
+		SpawnTimer = get_parent().find_child("SpawnerTimer", true, false)
+		return
 	if not PowerupLabel:
 		PowerupLabel = get_parent().find_child("PowerupLabel", true, false)
 		return
@@ -56,62 +60,108 @@ func give_powerdown():
 func modify_value(boost: bool):
 	var stat_roll = rng.randi_range(1, 13)
 	
+	SpawnTimer.set_wait_time(SpawnTimer.get_wait_time() * 0.9)
+	
 	match stat_roll:
 		#good goes up values
 		1, 2, 3, 4, 5, 6, 7:
 			var random_mult: float
-			if boost:
-				random_mult = rng.randf_range(1.5, 3.0)
-			else:
-				random_mult = rng.randf_range(0.3, 0.9)
+
 				
 			match stat_roll:
 				1:
+					if boost:
+						random_mult = rng.randf_range(1.5, 2.0)
+					else:
+						random_mult = rng.randf_range(0.75, 1.0)
 					PlayerStats.PlayerDamage *= random_mult
 					print("PlayerStats.PlayerDamage = ", PlayerStats.PlayerDamage)
 				2:
+					if boost:
+						random_mult = rng.randf_range(1.1, 1.3)
+					else:
+						random_mult = rng.randf_range(0.9, 1.0)
 					PlayerStats.PlayerSpeed *= random_mult
 					print("PlayerStats.PlayerSpeed = ", PlayerStats.PlayerSpeed)
 				3:
+					if boost:
+						random_mult = rng.randf_range(1.1, 1.3)
+					else:
+						random_mult = rng.randf_range(0.9, 1.0)
 					PlayerStats.PlayerProjectileSpeedMult *= random_mult
 					print("PlayerStats.PlayerProjectileSpeedMult = ", PlayerStats.PlayerProjectileSpeedMult)
 				4:
+					if boost:
+						random_mult = rng.randf_range(1.5, 3.0)
+					else:
+						random_mult = rng.randf_range(0.3, 0.9)
 					PlayerStats.EnemyGravityScale *= random_mult
 					print("PlayerStats.EnemyGravityScale = ", PlayerStats.EnemyGravityScale)
 				5:
+					if boost:
+						random_mult = rng.randf_range(1.05, 1.1)
+					else:
+						random_mult = rng.randf_range(0.9, 1.0)
 					PlayerStats.EnemyShootCooldown *= random_mult
 					print("PlayerStats.EnemyShootCooldown = ", PlayerStats.EnemyShootCooldown)
 				6:
+					if boost:
+						random_mult = rng.randf_range(1.5, 3.0)
+					else:
+						random_mult = rng.randf_range(0.3, 0.9)
 					PlayerStats.EnemyPushbackStrengthMult *= random_mult
 					print("PlayerStats.EnemyPushbackStrengthMult = ", PlayerStats.EnemyPushbackStrengthMult)
 				7:
+					if boost:
+						random_mult = rng.randf_range(1.5, 3.0)
+					else:
+						random_mult = rng.randf_range(0.3, 0.9)
 					PlayerStats.EnemyPushUpStrengthMult *= random_mult
 					print("PlayerStats.EnemyPushUpStrengthMult = ", PlayerStats.EnemyPushUpStrengthMult)
 		#good goes down values
 		8, 9, 10, 11, 12, 13:
 			var random_mult: float
-			if boost:
-				random_mult = rng.randf_range(0.3, 0.9)
-			else:
-				random_mult = rng.randf_range(1.5, 3.0)
-				
 			match stat_roll:
 				8:
+					if boost:
+						random_mult = rng.randf_range(0.7, 0.9)
+					else:
+						random_mult = rng.randf_range(1.1, 1.2)
 					PlayerStats.PlayerShotCooldown *= random_mult
 					print("PlayerStats.PlayerShotCooldown = ", PlayerStats.PlayerShotCooldown)
 				9:
+					if boost:
+						random_mult = rng.randf_range(0.7, 0.9)
+					else:
+						random_mult = rng.randf_range(1.1, 1.3)
 					PlayerStats.EnemySpeedMult *= random_mult
 					print("PlayerStats.EnemySpeedMult = ", PlayerStats.EnemySpeedMult)
 				10:
+					if boost:
+						random_mult = rng.randf_range(0.7, 0.9)
+					else:
+						random_mult = rng.randf_range(1.1, 1.2)
 					PlayerStats.EnemyRotSpeedMult *= random_mult
 					print("PlayerStats.EnemyRotSpeedMult = ", PlayerStats.EnemyRotSpeedMult)
 				11:
+					if boost:
+						random_mult = rng.randf_range(0.7, 0.9)
+					else:
+						random_mult = rng.randf_range(1.1, 1.2)
 					PlayerStats.PlayerGravityScale *= random_mult
 					print("PlayerStats.PlayerGravityScale = ", PlayerStats.PlayerGravityScale)
 				12:
+					if boost:
+						random_mult = rng.randf_range(0.7, 0.9)
+					else:
+						random_mult = rng.randf_range(1.1, 1.2)
 					PlayerStats.EnemyDamageMult *= random_mult
 					print("PlayerStats.EnemyDamageMult = ", PlayerStats.EnemyDamageMult)
 				13:	
+					if boost:
+						random_mult = rng.randf_range(0.7, 0.9)
+					else:
+						random_mult = rng.randf_range(1.1, 1.2)
 					PlayerStats.EnemyProjectileSpeedMult *= random_mult
 					print("PlayerStats.EnemyProjectileSpeedMult = ", PlayerStats.EnemyProjectileSpeedMult)
 

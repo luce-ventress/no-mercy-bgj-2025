@@ -11,7 +11,7 @@ var playerHitSound3 = preload ("res://Assets/Sound/Player/Player_hit_3.wav")
 
 var tween
 
-func _on_hit_area_area_entered(area: Area3D) -> void:
+func _on_hit_area_area_entered(_area: Area3D) -> void:
 	if	(health_points <= 0):
 		return
 	$PlayerHit.play()

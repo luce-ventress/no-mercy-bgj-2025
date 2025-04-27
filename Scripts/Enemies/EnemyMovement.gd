@@ -26,6 +26,9 @@ func _physics_process(delta: float) -> void:
 	
 	var desiredVelocity: Vector3 = toPlayerDir * speed * PlayerStats.EnemySpeedMult
 	
+	if (toPlayerDistance < stop_distance):
+		desiredVelocity = Vector3(0, desiredVelocity.y, 0)
+	
 	if not characterBody.is_on_floor():
 		desiredVelocity.x = 0
 		desiredVelocity.z = 0
@@ -33,11 +36,8 @@ func _physics_process(delta: float) -> void:
 
 	var current_velocity = characterBody.velocity
 	var final_velocity = current_velocity.lerp(desiredVelocity, 0.05)
-	if (toPlayerDistance < stop_distance):
-		final_velocity = Vector3(0, 0, 0)
-		
-	characterBody.set_velocity(final_velocity + externalImpulse)
 	
+	characterBody.set_velocity(final_velocity + externalImpulse)
 	
 	characterBody.move_and_slide()
 	externalImpulse = Vector3(0, 0, 0)

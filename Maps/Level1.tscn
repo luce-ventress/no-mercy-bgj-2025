@@ -137,7 +137,7 @@ script = ExtResource("6_5gvfm")
 meleeEnemyScene = ExtResource("4_ptu34")
 rangedEnemyScene = ExtResource("5_7bilv")
 
-[node name="Timer" type="Timer" parent="Spawner"]
+[node name="SpawnerTimer" type="Timer" parent="Spawner"]
 wait_time = 3.0
 autostart = true
 
@@ -148,4 +148,4 @@ autoplay = true
 
 [node name="Environment" parent="." instance=ExtResource("8_qqmji")]
 
-[connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_timer_timeout"]
+[connection signal="timeout" from="Spawner/SpawnerTimer" to="Spawner" method="_on_timer_timeout"]

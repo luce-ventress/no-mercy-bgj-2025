@@ -9,7 +9,7 @@ extends Node
 
 var tween
 
-func _on_hit_area_area_entered(area: Area3D) -> void:
+func _on_hit_area_area_entered(_area: Area3D) -> void:
 	if HealthPoints <= 0:
 		return
 	if $GotHit.is_playing() == false:
