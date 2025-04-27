@@ -15,6 +15,8 @@ var current_spawn_pos: Vector3
 var current_spawn_dir: Vector3
 
 func _physics_process(_delta: float) -> void:
+	if PlayerStats.isDead:
+		return
 	var myForward: Vector3 = (-characterBody.get_global_transform().basis.x).normalized()
 	
 	current_spawn_pos = ProjectileSpawn.global_position
@@ -23,6 +25,8 @@ func _physics_process(_delta: float) -> void:
 	#current_spawn_pos = owner.position + current_spawn_dir * spawn_dist + Vector3(0, spawn_height, 0)
 
 func _process(_ddelta: float) -> void:
+	if PlayerStats.isDead:
+		return
 	var current_time: float = (Time.get_ticks_msec() as float) / 1000.0
 	if current_time > (time_since_last_shot + PlayerStats.EnemyShootCooldown):
 		spawn_projectile(current_spawn_pos, current_spawn_dir, projectile_speed * PlayerStats.EnemyProjectileSpeedMult)

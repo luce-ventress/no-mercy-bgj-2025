@@ -25,6 +25,8 @@ func reset():
 	powerups = 0
 
 func _process(_delta: float) -> void:
+	if PlayerStats.isDead:
+		return
 	if not SpawnTimer:
 		SpawnTimer = get_parent().find_child("SpawnerTimer", true, false)
 		return

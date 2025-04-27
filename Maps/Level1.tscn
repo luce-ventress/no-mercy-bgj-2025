@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dhs00vouueblh"]
+[gd_scene load_steps=18 format=3 uid="uid://dhs00vouueblh"]
 
 [ext_resource type="PackedScene" uid="uid://bontx0lu6c4aw" path="res://Scenes/Player/PlayerPawn.tscn" id="1_l8wyv"]
 [ext_resource type="Texture2D" uid="uid://bmxfu7y3qft7n" path="res://Assets/Textures/tiles.jpg" id="1_qqmji"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://bhdcqwfjah5x0" path="res://Assets/Sound/Music/brnogamejam_2.wav" id="7_xd1hl"]
 [ext_resource type="PackedScene" uid="uid://x8lvaeuwy33l" path="res://Maps/Environment.tscn" id="8_qqmji"]
 [ext_resource type="AudioStream" uid="uid://d015pbsv1euye" path="res://Assets/Sound/Player/Powerup_end.wav" id="9_hd4mi"]
+[ext_resource type="AudioStream" uid="uid://dihdkusfokv15" path="res://Assets/Sound/Player/Powerup_get.wav" id="10_7pqj8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bv8d1"]
 albedo_texture = ExtResource("1_qqmji")
@@ -68,7 +69,7 @@ environment = SubResource("Environment_ptu34")
 camera_attributes = SubResource("CameraAttributesPractical_7bilv")
 
 [node name="RangedEnemy" parent="." instance=ExtResource("5_7bilv")]
-transform = Transform3D(0.999138, 0, 0.0415093, 0, 1, 0, -0.0415093, 0, 0.999138, -0.410775, -0.0999996, -11.9487)
+transform = Transform3D(0.999138, 0, 0.0415093, 0, 1, 0, -0.0415093, 0, 0.999138, -14.3274, -0.0999996, 4.78281)
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -128,7 +129,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MeleeEnemy" parent="." instance=ExtResource("4_ptu34")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.85578, 0.0544602, -21.8755)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.73298, 0.0544602, -31.5611)
 
 [node name="MeleeEnemy2" parent="." instance=ExtResource("4_ptu34")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8441, 0.0544602, -18.7119)
@@ -148,10 +149,12 @@ volume_db = -15.0
 autoplay = true
 
 [node name="Environment" parent="." instance=ExtResource("8_qqmji")]
+transform = Transform3D(0.146774, 0, -0.98917, 0, 1, 0, 0.98917, 0, 0.146774, 16, 0, 13)
 
 [node name="PowerupSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_hd4mi")
 
 [node name="PowerdownSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_7pqj8")
 
 [connection signal="timeout" from="Spawner/SpawnerTimer" to="Spawner" method="_on_timer_timeout"]

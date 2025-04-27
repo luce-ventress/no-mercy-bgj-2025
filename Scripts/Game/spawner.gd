@@ -4,12 +4,17 @@ extends Node
 @export var rangedEnemyScene: PackedScene
 
 @onready var PlayerPawn = owner.get_node("%PlayerPawnInstance") as Node3D
-var spawnDistance: float = 10
+
+@onready var rng = RandomNumberGenerator.new()
 
 func getSpawnLocation() -> Vector3:
-	var spawnDistanceRand: float = randf_range(-2, 5)
-	var playerPos = PlayerPawn.position.normalized()
-	var spawnLocation: Vector3 = Vector3(spawnDistance + spawnDistanceRand, spawnDistance + spawnDistanceRand, 0) + playerPos
+	var new_dir = Vector2()
+	new_dir.x = rng.randf_range(-1, 1)
+	new_dir.y = rng.randf_range(-1, 1)
+	new_dir.normalized()
+	
+	var spawnDistanceRand: float = randf_range(0, 80)
+	var spawnLocation: Vector3 = Vector3(new_dir.x * spawnDistanceRand, 10, new_dir.y * spawnDistanceRand)
 	
 	return spawnLocation
 
