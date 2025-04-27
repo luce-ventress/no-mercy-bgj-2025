@@ -15,6 +15,10 @@ var tween: Tween
 
 @onready var rng = RandomNumberGenerator.new()
 
+func reset():
+	game_start_time = Time.get_unix_time_from_system()
+	powerups = 0
+
 func _process(delta: float) -> void:
 	if not PowerupLabel:
 		return
