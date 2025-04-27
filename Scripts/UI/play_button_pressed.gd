@@ -6,4 +6,5 @@ extends Button
 func _on_pressed() -> void:
 	print("play pressed")
 	get_tree().change_scene_to_packed(levelScene)
-	#GameManager.reset()
+	GameManager.reset()
+	PowerupManager.reset()
