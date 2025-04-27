@@ -12,7 +12,7 @@ var externalImpulse: Vector3
 var IsDead: bool = false
 
 func _physics_process(delta: float) -> void:
-	if IsDead:
+	if PlayerStats.isDead:
 		return
 		
 	var toPlayerDir = characterBody.position.direction_to(PlayerPawn.position).normalized()

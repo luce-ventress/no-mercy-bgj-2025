@@ -19,6 +19,8 @@ func _physics_process(delta: float) -> void:
 	current_spawn_pos = owner.position + current_spawn_dir * spawn_dist + Vector3(0, spawn_height, 0)
 
 func _process(delta: float) -> void:
+	if PlayerStats.isDead:
+		return
 	if Input.is_action_pressed("shoot"):
 		var current_time: float = (Time.get_ticks_msec() as float) / 1000.0
 		if current_time > (time_since_last_shot + PlayerStats.PlayerShotCooldown):
