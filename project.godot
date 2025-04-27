@@ -15,6 +15,11 @@ run/main_scene="uid://dhs00vouueblh"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+PlayerStats="*res://Scripts/Game/PlayerStats.gd"
+PowerupManager="*res://Scripts/Game/PowerupManager.gd"
+
 [display]
 
 window/size/viewport_width=800

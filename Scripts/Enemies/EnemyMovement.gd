@@ -15,12 +15,12 @@ func _physics_process(delta: float) -> void:
 	
 	rotate_towards_player(toPlayerDir, delta)
 	
-	var desiredVelocity: Vector3 = toPlayerDir * speed
+	var desiredVelocity: Vector3 = toPlayerDir * speed * PlayerStats.EnemySpeedMult
 	
 	if not characterBody.is_on_floor():
 		desiredVelocity.x = 0
 		desiredVelocity.z = 0
-		desiredVelocity.y = desiredVelocity.y - (fall_acceleration * delta)
+		desiredVelocity.y = desiredVelocity.y - (fall_acceleration * delta * PlayerStats.EnemyGravityScale)
 
 	var current_velocity = characterBody.velocity
 	var final_velocity = current_velocity.lerp(desiredVelocity, 0.05)
@@ -31,12 +31,12 @@ func _physics_process(delta: float) -> void:
 
 func report_got_hit(pushBack: float):
 	var backwards = characterBody.transform.basis.x.normalized()
-	var pushbackImpulse = (backwards * pushBack)
+	var pushbackImpulse = (backwards * pushBack * PlayerStats.EnemyPushbackStrengthMult)
 	externalImpulse = pushbackImpulse
 	
 func report_hit_other(pushBack: float, pushUp: float):
 	var backwards = characterBody.transform.basis.x.normalized()
-	var pushbackImpulse = (backwards * pushBack) + Vector3(0, pushUp, 0);
+	var pushbackImpulse = (backwards * pushBack * PlayerStats.EnemyPushbackStrengthMult) + Vector3(0, pushUp * PlayerStats.EnemyPushUpStrengthMult, 0);
 	externalImpulse = pushbackImpulse
 
 func rotate_towards_player(toPlayerDir: Vector3, delta: float):
@@ -47,7 +47,7 @@ func rotate_towards_player(toPlayerDir: Vector3, delta: float):
 	var myLeft: Vector3 = (characterBody.get_global_transform().basis.z).normalized()
 	var toPlayerDot: float = sign(myLeft.dot(toPlayerDir))
 	
-	var currentRotationStep: float = rotationSpeed * delta
+	var currentRotationStep: float = rotationSpeed * delta * PlayerStats.EnemyRotSpeedMult
 	var trueAngle: float = minf(currentRotationStep, toPlayerAngle)
 
 	characterBody.rotate_y(trueAngle * toPlayerDot)

@@ -8,7 +8,6 @@ extends Node
 @onready var camera = owner.get_node("CameraRoot/Camera3D") as Camera3D
 
 var time_since_last_shot = 0
-var shot_cooldown = 0.01
 
 var current_spawn_pos: Vector3
 var current_spawn_dir: Vector3
@@ -22,7 +21,7 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("shoot"):
 		var current_time: float = (Time.get_ticks_msec() as float) / 1000.0
-		if current_time > (time_since_last_shot + shot_cooldown):
+		if current_time > (time_since_last_shot + PlayerStats.PlayerShotCooldown):
 			spawn_projectile(current_spawn_pos, current_spawn_dir)
 			time_since_last_shot = current_time
 			

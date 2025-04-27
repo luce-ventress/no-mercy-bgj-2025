@@ -10,18 +10,18 @@ func _physics_process(delta: float) -> void:
 	var desiredVelocity: Vector3 = Vector3(0, 0, 0)
 	
 	if Input.is_action_pressed("player_forward"):
-		desiredVelocity.x += speed
+		desiredVelocity.x += 1
 	if Input.is_action_pressed("player_backward"):
-		desiredVelocity.x -= speed	
+		desiredVelocity.x -= 1
 	if Input.is_action_pressed("player_right"):
-		desiredVelocity.z += speed
+		desiredVelocity.z += 1
 	if Input.is_action_pressed("player_left"):
-		desiredVelocity.z -= speed
+		desiredVelocity.z -= 1
 																											  
 	if not characterBody.is_on_floor():
-		desiredVelocity.y = desiredVelocity.y - (fall_acceleration * delta)
+		desiredVelocity.y = desiredVelocity.y - (fall_acceleration * delta * PlayerStats.PlayerGravityScale)
 		
-	desiredVelocity = desiredVelocity.normalized() * speed;
+	desiredVelocity = desiredVelocity.normalized() * speed * PlayerStats.PlayerSpeed;
 	characterBody.set_velocity(desiredVelocity)
 	
 	var oldPos = characterBody.get_position()
