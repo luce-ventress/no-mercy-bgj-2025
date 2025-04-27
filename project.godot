@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="no-mercy-bgj-2025"
-run/main_scene="uid://dhs00vouueblh"
+run/main_scene="uid://dunc138j0tmgj"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 

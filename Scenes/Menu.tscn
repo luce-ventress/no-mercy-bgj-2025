@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://dunc138j0tmgj"]
+
+[ext_resource type="Script" uid="uid://cqkqax642i5fh" path="res://Scripts/UI/play_button_pressed.gd" id="1_6pedr"]
+[ext_resource type="PackedScene" uid="uid://dhs00vouueblh" path="res://Maps/Level1.tscn" id="2_s2c3o"]
+[ext_resource type="Script" uid="uid://oo8brcorhsa2" path="res://Scripts/UI/quit_button_pressed.gd" id="2_syfuq"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 226.0
+offset_top = 19.0
+offset_right = 600.0
+offset_bottom = 117.0
+color = Color(0.510881, 0.679227, 0.230408, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 227.0
+offset_top = 122.0
+offset_right = 603.0
+offset_bottom = 223.0
+color = Color(0.642986, 0, 0.0908317, 1)
+
+[node name="playButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 226.0
+offset_top = 18.0
+offset_right = 600.0
+offset_bottom = 118.0
+text = "Play"
+script = ExtResource("1_6pedr")
+levelScene = ExtResource("2_s2c3o")
+
+[node name="quitButton" type="Button" parent="."]
+offset_left = 228.0
+offset_top = 123.0
+offset_right = 602.0
+offset_bottom = 223.0
+text = "Quit"
+script = ExtResource("2_syfuq")
+
+[connection signal="pressed" from="playButton" to="playButton" method="_on_pressed"]
+[connection signal="pressed" from="quitButton" to="quitButton" method="_on_pressed"]
