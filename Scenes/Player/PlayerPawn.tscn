@@ -1,10 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://bontx0lu6c4aw"]
+[gd_scene load_steps=14 format=3 uid="uid://bontx0lu6c4aw"]
 
 [ext_resource type="PackedScene" uid="uid://bkk4k8tlumu8t" path="res://Scenes/Player/PlayerMesh.tscn" id="1_3mnxu"]
 [ext_resource type="Script" uid="uid://ovt4eec1jrg3" path="res://Scripts/Player/PlayerMovement.gd" id="1_8km1k"]
 [ext_resource type="Script" uid="uid://dcycbeu70us3m" path="res://Scripts/Player/PlayerShooting.gd" id="3_0l0su"]
 [ext_resource type="PackedScene" uid="uid://bax3ulu7c3cic" path="res://Scenes/Projectiles/ProjectileBase.tscn" id="4_3kofw"]
-[ext_resource type="AudioStream" uid="uid://blhtknfj1kbb0" path="res://Assets/Sound/Player/Player_shoot.wav" id="5_68rfy"]
 [ext_resource type="Script" uid="uid://cv8yqinugl4j0" path="res://Scripts/Player/PlayerHealth.gd" id="5_vtcqr"]
 [ext_resource type="AudioStream" uid="uid://b7d6dd75co2c" path="res://Assets/Sound/Player/Player_hit_1.wav" id="6_b6njq"]
 [ext_resource type="AudioStream" uid="uid://cuebm3b66exf2" path="res://Assets/Sound/Player/Player_shoot_2.wav" id="6_sxlwj"]
@@ -17,9 +16,9 @@
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_sxlwj"]
 playback_mode = 1
-streams_count = 2
-stream_0/stream = ExtResource("5_68rfy")
-stream_1/stream = ExtResource("6_sxlwj")
+random_pitch = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("6_sxlwj")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bji6c"]
 streams_count = 3

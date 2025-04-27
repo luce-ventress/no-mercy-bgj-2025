@@ -28,8 +28,8 @@ func _process(delta: float) -> void:
 			time_since_last_shot = current_time
 			
 func spawn_projectile(position: Vector3, dir: Vector3):
-	if $PlayerShoot.is_playing() == false:
-		$PlayerShoot.play()
+	#if $PlayerShoot.is_playing() == false:
+	$PlayerShoot.play()
 	var projectile = ProjectileScene.instantiate()
 	root.add_child(projectile)
 	projectile.set_position(position)

@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://dhs00vouueblh"]
+[gd_scene load_steps=12 format=3 uid="uid://dhs00vouueblh"]
 
 [ext_resource type="PackedScene" uid="uid://bontx0lu6c4aw" path="res://Scenes/Player/PlayerPawn.tscn" id="1_l8wyv"]
 [ext_resource type="Texture2D" uid="uid://dw1nyaoxl2v5w" path="res://Assets/Textures/placeholder.png" id="1_ypajb"]
 [ext_resource type="PackedScene" uid="uid://bax3ulu7c3cic" path="res://Scenes/Projectiles/ProjectileBase.tscn" id="3_bv8d1"]
 [ext_resource type="PackedScene" uid="uid://buiud1ylj3qrj" path="res://Scenes/Enemies/MeleeEnemyPawn.tscn" id="4_ptu34"]
 [ext_resource type="PackedScene" uid="uid://6ihp42gfl11b" path="res://Scenes/Enemies/RangedEnemyPawn.tscn" id="5_7bilv"]
+[ext_resource type="Script" uid="uid://bwqto4w5wuh45" path="res://Scripts/Game/spawner.gd" id="6_5gvfm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bv8d1"]
 albedo_texture = ExtResource("1_ypajb")
@@ -58,3 +59,14 @@ camera_attributes = SubResource("CameraAttributesPractical_7bilv")
 
 [node name="RangedEnemy" parent="." instance=ExtResource("5_7bilv")]
 transform = Transform3D(0.999138, 0, 0.0415093, 0, 1, 0, -0.0415093, 0, 0.999138, -0.410775, -0.0999996, -11.9487)
+
+[node name="Spawner" type="Node" parent="."]
+script = ExtResource("6_5gvfm")
+meleeEnemyScene = ExtResource("4_ptu34")
+rangedEnemyScene = ExtResource("5_7bilv")
+
+[node name="Timer" type="Timer" parent="Spawner"]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_timer_timeout"]
