@@ -13,3 +13,4 @@ var EnemyDamageMult: float = 1
 var EnemyProjectileSpeedMult: float = 1
 var EnemyPushbackStrengthMult: float = 1 #used
 var EnemyPushUpStrengthMult: float = 1 #used
+var isDead: bool = false

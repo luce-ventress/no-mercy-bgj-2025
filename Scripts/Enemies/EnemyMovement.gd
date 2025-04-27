@@ -5,7 +5,7 @@ extends Node
 @export var fall_acceleration = 600
 
 @onready var characterBody = owner as CharacterBody3D
-@onready var PlayerPawn = owner.get_node("%PlayerPawnInstance") as Node3D
+@onready var PlayerPawn = owner.get_parent().get_node("%PlayerPawnInstance") as Node3D
 
 var externalImpulse: Vector3
 
