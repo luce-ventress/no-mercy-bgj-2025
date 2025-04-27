@@ -3,6 +3,7 @@ extends Node
 @export var speed = 5
 @export var rotationSpeed = 1.5
 @export var fall_acceleration = 600
+@export var stop_distance = 0
 
 @onready var characterBody = owner as CharacterBody3D
 @onready var PlayerPawn = owner.get_parent().get_node("%PlayerPawnInstance") as Node3D
@@ -15,6 +16,9 @@ func _physics_process(delta: float) -> void:
 	if PlayerStats.isDead:
 		return
 		
+	
+	var toPlayerDistance = characterBody.position.distance_to(PlayerPawn.position)
+	
 	var toPlayerDir = characterBody.position.direction_to(PlayerPawn.position).normalized()
 	toPlayerDir.y = 0
 	
@@ -29,8 +33,12 @@ func _physics_process(delta: float) -> void:
 
 	var current_velocity = characterBody.velocity
 	var final_velocity = current_velocity.lerp(desiredVelocity, 0.05)
+	if (toPlayerDistance < stop_distance):
+		final_velocity = Vector3(0, 0, 0)
 		
 	characterBody.set_velocity(final_velocity + externalImpulse)
+	
+	
 	characterBody.move_and_slide()
 	externalImpulse = Vector3(0, 0, 0)
 
