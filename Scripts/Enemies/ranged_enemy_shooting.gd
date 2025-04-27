@@ -6,30 +6,32 @@ extends Node
 
 @onready var root = owner.get_parent()
 @onready var characterBody = owner as CharacterBody3D
-@onready var camera = owner.get_node("CameraRoot/Camera3D") as Camera3D
-@onready var PlayerPawn = owner.get_node("%PlayerPawnInstance") as Node3D
+@onready var ProjectileSpawn = owner.get_node("ProjectileSpawnPos") as Node3D
 
 var time_since_last_shot = 0
-var shot_cooldown = 0.01
+var shot_cooldown = 0.1
 
 var current_spawn_pos: Vector3
 var current_spawn_dir: Vector3
 
 func _physics_process(delta: float) -> void:
-	var toPlayerDir = characterBody.position.direction_to(PlayerPawn.position).normalized()
-	toPlayerDir.y = 0
-	current_spawn_pos = owner.position + current_spawn_dir * spawn_dist + Vector3(0, spawn_height, 0)
+	
+	var myForward: Vector3 = (-characterBody.get_global_transform().basis.x).normalized()
+	
+	current_spawn_pos = ProjectileSpawn.global_position
+	current_spawn_dir = myForward
+	
+	#current_spawn_pos = owner.position + current_spawn_dir * spawn_dist + Vector3(0, spawn_height, 0)
 
 func _process(delta: float) -> void:
-	if Input.is_action_pressed("shoot"):
-		var current_time: float = (Time.get_ticks_msec() as float) / 1000.0
-		if current_time > (time_since_last_shot + shot_cooldown):
-			spawn_projectile(current_spawn_pos, current_spawn_dir)
-			time_since_last_shot = current_time
+	var current_time: float = (Time.get_ticks_msec() as float) / 1000.0
+	if current_time > (time_since_last_shot + shot_cooldown):
+		spawn_projectile(current_spawn_pos, current_spawn_dir)
+		time_since_last_shot = current_time
 			
 func spawn_projectile(position: Vector3, dir: Vector3):
-	if $PlayerShoot.is_playing() == false:
-		$PlayerShoot.play()
+	if $Ranged_enemy_attack.is_playing() == false:
+		$Ranged_enemy_attack.play()
 	var projectile = ProjectileScene.instantiate()
 	root.add_child(projectile)
 	projectile.set_position(position)
