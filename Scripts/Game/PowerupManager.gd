@@ -21,8 +21,10 @@ func reset():
 
 func _process(delta: float) -> void:
 	if not PowerupLabel:
+		PowerupLabel = get_parent().find_child("PowerupLabel", true, false)
 		return
 	if not PowerdownLabel:
+		PowerdownLabel = get_parent().find_child("PowerDown", true, false)
 		return
 	
 	time = Time.get_unix_time_from_system() - game_start_time
