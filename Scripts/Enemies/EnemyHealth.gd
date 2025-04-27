@@ -21,4 +21,3 @@ func reduce_health(amount: float):
 	
 func die():
 	pass
->>>>>>> b6b9bdd (added playerstats and wip damage for enemies)
