@@ -15,7 +15,6 @@ var current_spawn_pos: Vector3
 var current_spawn_dir: Vector3
 
 func _physics_process(delta: float) -> void:
-	
 	var myForward: Vector3 = (-characterBody.get_global_transform().basis.x).normalized()
 	
 	current_spawn_pos = ProjectileSpawn.global_position

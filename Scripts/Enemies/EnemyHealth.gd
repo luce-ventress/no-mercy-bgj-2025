@@ -12,8 +12,8 @@ var tween
 func _on_hit_area_area_entered(area: Area3D) -> void:
 	if HealthPoints <= 0:
 		return
-	if $MeleeEnemyHit.is_playing() == false:
-		$MeleeEnemyHit.play()
+	if $GotHit.is_playing() == false:
+		$GotHit.play()
 			
 	movement.report_got_hit(2)
 	var damaged_amount = get_damage()
