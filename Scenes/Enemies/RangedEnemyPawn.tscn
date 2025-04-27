@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=3 uid="uid://6ihp42gfl11b"]
+
+[ext_resource type="PackedScene" uid="uid://ddresvhwn7c3r" path="res://Assets/Meshes/NoMercy_Enemy_Ranged.glb" id="1_bx7v7"]
+[ext_resource type="Script" uid="uid://doh6lcg3ck5k0" path="res://Scripts/Enemies/EnemyHealth.gd" id="2_87ct1"]
+[ext_resource type="AudioStream" uid="uid://dnov2aeli5egf" path="res://Assets/Sound/Enemy/Ranged_enemy_hit_1.wav" id="3_enbp0"]
+[ext_resource type="AudioStream" uid="uid://borwxy5ris3i4" path="res://Assets/Sound/Enemy/Ranged_enemy_hit_2.wav" id="4_8p25c"]
+[ext_resource type="Script" uid="uid://c82w8jvguxs2p" path="res://Scripts/Enemies/ranged_enemy_shooting.gd" id="5_8p25c"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_imkbi"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vennm"]
+streams_count = 2
+stream_0/stream = ExtResource("3_enbp0")
+stream_1/stream = ExtResource("4_8p25c")
+
+[node name="RangedEnemy" type="CharacterBody3D"]
+
+[node name="NoMercy_Enemy_Ranged" parent="." instance=ExtResource("1_bx7v7")]
+
+[node name="BodyCapsule" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.328276, 0)
+shape = SubResource("CapsuleShape3D_imkbi")
+
+[node name="EnemyHealth" type="Node" parent="."]
+script = ExtResource("2_87ct1")
+
+[node name="RangedEnemyHit" type="AudioStreamPlayer3D" parent="EnemyHealth"]
+stream = SubResource("AudioStreamRandomizer_vennm")
+panning_strength = 0.0
+attenuation_filter_cutoff_hz = 20500.0
+
+[node name="RangedEnemyShooting" type="Node" parent="."]
+script = ExtResource("5_8p25c")

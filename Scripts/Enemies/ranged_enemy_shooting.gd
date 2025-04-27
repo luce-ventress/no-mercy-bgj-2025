@@ -5,7 +5,9 @@ extends Node
 @export var spawn_dist: float = 1.5
 
 @onready var root = owner.get_parent()
+@onready var characterBody = owner as CharacterBody3D
 @onready var camera = owner.get_node("CameraRoot/Camera3D") as Camera3D
+@onready var PlayerPawn = owner.get_node("%PlayerPawnInstance") as Node3D
 
 var time_since_last_shot = 0
 var shot_cooldown = 0.01
@@ -13,10 +15,9 @@ var shot_cooldown = 0.01
 var current_spawn_pos: Vector3
 var current_spawn_dir: Vector3
 
-var playerShootSound = preload("res://Assets/Sound/Player/Player_shoot.wav")
-
 func _physics_process(delta: float) -> void:
-	current_spawn_dir = get_mouse_direction()
+	var toPlayerDir = characterBody.position.direction_to(PlayerPawn.position).normalized()
+	toPlayerDir.y = 0
 	current_spawn_pos = owner.position + current_spawn_dir * spawn_dist + Vector3(0, spawn_height, 0)
 
 func _process(delta: float) -> void:
@@ -34,19 +35,19 @@ func spawn_projectile(position: Vector3, dir: Vector3):
 	projectile.set_position(position)
 	projectile.set_projectile_direction(dir)
 	
-func get_mouse_direction() -> Vector3:
-	var mouse_position = get_window().get_mouse_position()
-	var pick_normal = camera.project_ray_normal(mouse_position)
-	var pick_origin = camera.project_ray_origin(mouse_position)
-	
-	var params = PhysicsRayQueryParameters3D.create(pick_origin, pick_origin + pick_normal * 1000)
-	params.set_collision_mask(8388608)
-	var state = owner.get_world_3d().direct_space_state
-	var result = state.intersect_ray(params)
-	
-	if	not result:
-		return Vector3(1, 0, 1)
-	
-	var dir = (result.position - owner.position).normalized()
-	
-	return dir
+#func get_mouse_direction() -> Vector3:
+	#var mouse_position = get_window().get_mouse_position()
+	#var pick_normal = camera.project_ray_normal(mouse_position)
+	#var pick_origin = camera.project_ray_origin(mouse_position)
+	#
+	#var params = PhysicsRayQueryParameters3D.create(pick_origin, pick_origin + pick_normal * 1000)
+	#params.set_collision_mask(8388608)
+	#var state = owner.get_world_3d().direct_space_state
+	#var result = state.intersect_ray(params)
+	#
+	#if	not result:
+		#return Vector3(1, 0, 1)
+	#
+	#var dir = (result.position - owner.position).normalized()
+	#
+	#return dir

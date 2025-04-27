@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://buiud1ylj3qrj"]
+[gd_scene load_steps=16 format=3 uid="uid://buiud1ylj3qrj"]
 
 [ext_resource type="Script" uid="uid://dpthrgto3rfda" path="res://Scripts/Enemies/EnemyMovement.gd" id="1_dg6hr"]
 [ext_resource type="PackedScene" uid="uid://d3mim8qfv50tg" path="res://Assets/Meshes/NoMercy_Enemy_Melee.glb" id="2_qta8w"]
@@ -8,6 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://b72278cg7i484" path="res://Assets/Sound/Player/Melee_impact_2.wav" id="6_s4yc3"]
 [ext_resource type="AudioStream" uid="uid://bciiv00l1dhrc" path="res://Assets/Sound/Player/Melee_impact_3.wav" id="7_cn7gm"]
 [ext_resource type="Script" uid="uid://doh6lcg3ck5k0" path="res://Scripts/Enemies/EnemyHealth.gd" id="7_s4yc3"]
+[ext_resource type="AudioStream" uid="uid://qckk6ytpmw4j" path="res://Assets/Sound/Enemy/Enemy_hit_1.wav" id="8_edw7h"]
+[ext_resource type="AudioStream" uid="uid://ddekl7uxteyuh" path="res://Assets/Sound/Enemy/Enemy_hit_2.wav" id="9_rsbxw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qta8w"]
 radius = 0.508876
@@ -25,6 +27,11 @@ streams_count = 3
 stream_0/stream = ExtResource("5_74amo")
 stream_1/stream = ExtResource("6_s4yc3")
 stream_2/stream = ExtResource("7_cn7gm")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_uuoqu"]
+streams_count = 2
+stream_0/stream = ExtResource("8_edw7h")
+stream_1/stream = ExtResource("9_rsbxw")
 
 [node name="MeleeEnemy" type="CharacterBody3D"]
 
@@ -56,13 +63,23 @@ shape = SubResource("BoxShape3D_qta8w")
 
 [node name="MeleeEnemySoundNode" type="AudioStreamPlayer3D" parent="SwordArea"]
 stream = ExtResource("4_ynbeu")
+panning_strength = 0.0
+attenuation_filter_cutoff_hz = 20500.0
 
 [node name="MeleeEnemyPlayerDamage" type="AudioStreamPlayer3D" parent="SwordArea"]
 stream = SubResource("AudioStreamRandomizer_ynbeu")
 volume_db = -3.048
+panning_strength = 0.0
+attenuation_filter_cutoff_hz = 20500.0
 
 [node name="EnemyHealth" type="Node" parent="."]
 script = ExtResource("7_s4yc3")
+
+[node name="MeleeEnemyHit" type="AudioStreamPlayer3D" parent="EnemyHealth"]
+stream = SubResource("AudioStreamRandomizer_uuoqu")
+volume_db = -2.0
+panning_strength = 0.0
+attenuation_filter_cutoff_hz = 20500.0
 
 [node name="EnemyMovement" type="Node" parent="."]
 script = ExtResource("1_dg6hr")
