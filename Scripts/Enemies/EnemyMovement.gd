@@ -9,7 +9,12 @@ extends Node
 
 var externalImpulse: Vector3
 
+var IsDead: bool = false
+
 func _physics_process(delta: float) -> void:
+	if IsDead:
+		return
+		
 	var toPlayerDir = characterBody.position.direction_to(PlayerPawn.position).normalized()
 	toPlayerDir.y = 0
 	
@@ -30,16 +35,25 @@ func _physics_process(delta: float) -> void:
 	externalImpulse = Vector3(0, 0, 0)
 
 func report_got_hit(pushBack: float):
+	if IsDead:
+		return
+		
 	var backwards = characterBody.transform.basis.x.normalized()
 	var pushbackImpulse = (backwards * pushBack * PlayerStats.EnemyPushbackStrengthMult)
 	externalImpulse = pushbackImpulse
 	
 func report_hit_other(pushBack: float, pushUp: float):
+	if IsDead:
+		return
+		
 	var backwards = characterBody.transform.basis.x.normalized()
 	var pushbackImpulse = (backwards * pushBack * PlayerStats.EnemyPushbackStrengthMult) + Vector3(0, pushUp * PlayerStats.EnemyPushUpStrengthMult, 0);
 	externalImpulse = pushbackImpulse
 
 func rotate_towards_player(toPlayerDir: Vector3, delta: float):
+	if IsDead:
+		return
+		
 	var myForward: Vector3 = (-characterBody.get_global_transform().basis.x).normalized()
 	myForward.y = 0
 	var toPlayerAngle: float = myForward.angle_to(toPlayerDir)

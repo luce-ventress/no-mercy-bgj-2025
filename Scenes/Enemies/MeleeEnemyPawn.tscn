@@ -55,7 +55,7 @@ collision_layer = 4
 collision_mask = 4
 script = ExtResource("3_4ci8v")
 pushBack = 10.0
-pushUp = 20.0
+pushUp = 5.0
 
 [node name="SwordShape" type="CollisionShape3D" parent="SwordArea"]
 transform = Transform3D(0.93593, 0, 0.352185, 0, 1, 0, -0.352185, 0, 0.93593, -1.36499, 0.679212, 0.233927)

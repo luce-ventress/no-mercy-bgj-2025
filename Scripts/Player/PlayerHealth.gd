@@ -13,6 +13,6 @@ func _on_hit_area_area_entered(area: Area3D) -> void:
 	player_hat.shrink_hat()
 	health_points -= 1
 	if	(health_points <= 0):
-		print("die")
+		print("player die")
 		root.remove_child(owner)
 		queue_free()

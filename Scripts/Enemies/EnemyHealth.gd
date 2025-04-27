@@ -2,9 +2,15 @@ extends Node
 
 @export var HealthPoints: float = 100
 
+@onready var root = owner.get_parent().get_node(".")
 @onready var movement = owner.get_node("EnemyMovement")
+@onready var mesh = owner.get_node("NoMercy_Enemy_Melee")
+
+var tween
 
 func _on_hit_area_area_entered(area: Area3D) -> void:
+	if HealthPoints <= 0:
+		return
 	if $MeleeEnemyHit.is_playing() == false:
 		$MeleeEnemyHit.play()
 			
@@ -13,11 +19,30 @@ func _on_hit_area_area_entered(area: Area3D) -> void:
 	reduce_health(damaged_amount)
 
 func get_damage() -> float:
-	
-	return 10.0
+	return PlayerStats.PlayerDamage
 
 func reduce_health(amount: float):
-	pass
+	HealthPoints -= amount;
+	hit_anim()
+	if HealthPoints <= 0:
+		die()
 	
 func die():
-	pass
+	print("monster die")
+	movement.IsDead = true
+	death_anim()
+
+func hit_anim():
+	if tween:
+		tween.kill() # Abort the previous animation.
+	tween = get_tree().create_tween()
+	tween.tween_property(mesh, "scale", Vector3(1.33, 1.33, 1.33), 0.05)
+	tween.tween_property(mesh, "scale", Vector3(1, 1, 1), 0.05)
+	
+func death_anim():
+	if tween:
+		tween.kill() # Abort the previous animation.
+	tween = get_tree().create_tween()
+	tween.tween_property(mesh, "rotation", Vector3(-PI/2, 0, -PI/2), 0.3)
+	tween.tween_property(mesh, "scale", Vector3(0.1, 0.1, 0.1), 1).set_trans(Tween.TRANS_EXPO)
+	tween.tween_callback(owner.queue_free)
