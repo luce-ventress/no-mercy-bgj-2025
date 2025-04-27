@@ -6,13 +6,12 @@ extends Node
 @onready var PlayerPawn = owner.get_node("%PlayerPawnInstance") as Node3D
 
 
-
 func getSpawnLocation() -> Vector3:
 	var spawnLocation: Vector3 = Vector3(0,0,0)
 	return spawnLocation
 
 func _on_wave_timer_timeout() -> void:
-	if $PlayerPawn.isDead:
+	if PlayerStats.isDead:
 		return
 		
 	var MeleeEnemy = meleeEnemyScene.instantiate()
