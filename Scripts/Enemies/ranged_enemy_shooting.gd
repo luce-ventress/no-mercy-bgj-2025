@@ -3,7 +3,7 @@ extends Node
 @export var ProjectileScene: PackedScene
 @export var spawn_height: float = 0.5
 @export var spawn_dist: float = 1.5
-@export var projectile_speed: float = 10
+@export var projectile_speed: float = 5
 
 @onready var root = owner.get_parent()
 @onready var characterBody = owner as CharacterBody3D

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dhs00vouueblh"]
+[gd_scene load_steps=15 format=3 uid="uid://dhs00vouueblh"]
 
 [ext_resource type="PackedScene" uid="uid://bontx0lu6c4aw" path="res://Scenes/Player/PlayerPawn.tscn" id="1_l8wyv"]
 [ext_resource type="Texture2D" uid="uid://dw1nyaoxl2v5w" path="res://Assets/Textures/placeholder.png" id="1_ypajb"]
@@ -29,6 +29,11 @@ fog_light_energy = 7.05
 [sub_resource type="LabelSettings" id="LabelSettings_7bilv"]
 font_size = 48
 outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xd1hl"]
+font_size = 72
+outline_size = 12
 outline_color = Color(0, 0, 0, 1)
 
 [node name="Level1" type="Node3D"]
@@ -83,6 +88,40 @@ offset_bottom = 77.0
 grow_horizontal = 2
 text = "10:50:20"
 label_settings = SubResource("LabelSettings_7bilv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PowerupLabel" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -130.0
+offset_top = 60.0
+offset_right = 131.0
+offset_bottom = 159.0
+grow_horizontal = 2
+pivot_offset = Vector2(130, 0)
+text = "MERCY!"
+label_settings = SubResource("LabelSettings_xd1hl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PowerDown" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -130.0
+offset_top = 60.0
+offset_right = 131.0
+offset_bottom = 159.0
+grow_horizontal = 2
+pivot_offset = Vector2(196, 0)
+text = "NO MERCY!"
+label_settings = SubResource("LabelSettings_xd1hl")
 horizontal_alignment = 1
 vertical_alignment = 1
 

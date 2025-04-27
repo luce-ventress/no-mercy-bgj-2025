@@ -55,7 +55,7 @@ stream = ExtResource("6_vennm")
 volume_db = -2.0
 
 [node name="ProjectileSpawnPos" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25965, 0.4, 0)
 
 [node name="EnemyMovement" type="Node" parent="."]
 script = ExtResource("8_7n326")
