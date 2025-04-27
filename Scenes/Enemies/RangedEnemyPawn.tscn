@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://borwxy5ris3i4" path="res://Assets/Sound/Enemy/Ranged_enemy_hit_2.wav" id="4_8p25c"]
 [ext_resource type="Script" uid="uid://c82w8jvguxs2p" path="res://Scripts/Enemies/ranged_enemy_shooting.gd" id="5_8p25c"]
 [ext_resource type="PackedScene" uid="uid://baw7su187gthi" path="res://Scenes/Projectiles/ProjectileEnemy.tscn" id="6_7n326"]
-[ext_resource type="AudioStream" uid="uid://xwoh5t0la3ya" path="res://Assets/Sound/Enemy/ranged_enemy_attack.wav" id="6_vennm"]
+[ext_resource type="AudioStream" uid="uid://xwoh5t0la3ya" path="res://Assets/Sound/Enemy/Ranged_enemy_attack.wav" id="6_vennm"]
 [ext_resource type="Script" uid="uid://dpthrgto3rfda" path="res://Scripts/Enemies/EnemyMovement.gd" id="8_7n326"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_imkbi"]

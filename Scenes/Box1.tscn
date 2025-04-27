@@ -8,8 +8,10 @@ size = Vector3(2.2, 2, 2.2)
 [node name="Box1" type="Node3D"]
 
 [node name="box1" parent="." instance=ExtResource("1_2ynhe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 shape = SubResource("BoxShape3D_6jnmm")
