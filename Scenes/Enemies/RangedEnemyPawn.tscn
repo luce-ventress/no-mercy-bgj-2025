@@ -39,6 +39,7 @@ ProjectileScene = ExtResource("6_vfp0b")
 
 [node name="Ranged_enemy_attack" type="AudioStreamPlayer3D" parent="RangedEnemyShooting"]
 stream = ExtResource("6_vennm")
+volume_db = -2.0
 
 [node name="ProjectileSpawnPos" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.4, 0)

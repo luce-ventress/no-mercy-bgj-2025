@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dhs00vouueblh"]
+[gd_scene load_steps=13 format=3 uid="uid://dhs00vouueblh"]
 
 [ext_resource type="PackedScene" uid="uid://bontx0lu6c4aw" path="res://Scenes/Player/PlayerPawn.tscn" id="1_l8wyv"]
 [ext_resource type="Texture2D" uid="uid://dw1nyaoxl2v5w" path="res://Assets/Textures/placeholder.png" id="1_ypajb"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://buiud1ylj3qrj" path="res://Scenes/Enemies/MeleeEnemyPawn.tscn" id="4_ptu34"]
 [ext_resource type="PackedScene" uid="uid://6ihp42gfl11b" path="res://Scenes/Enemies/RangedEnemyPawn.tscn" id="5_7bilv"]
 [ext_resource type="Script" uid="uid://bwqto4w5wuh45" path="res://Scripts/Game/spawner.gd" id="6_5gvfm"]
+[ext_resource type="AudioStream" uid="uid://bhdcqwfjah5x0" path="res://Assets/Sound/Music/brnogamejam_2.wav" id="7_xd1hl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bv8d1"]
 albedo_texture = ExtResource("1_ypajb")
@@ -68,5 +69,10 @@ rangedEnemyScene = ExtResource("5_7bilv")
 [node name="Timer" type="Timer" parent="Spawner"]
 wait_time = 3.0
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_xd1hl")
+volume_db = -20.0
+autoplay = true
 
 [connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_timer_timeout"]

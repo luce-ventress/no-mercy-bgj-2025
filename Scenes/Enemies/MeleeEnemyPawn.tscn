@@ -77,7 +77,7 @@ script = ExtResource("7_s4yc3")
 
 [node name="MeleeEnemyHit" type="AudioStreamPlayer3D" parent="EnemyHealth"]
 stream = SubResource("AudioStreamRandomizer_uuoqu")
-volume_db = -2.0
+volume_db = -5.0
 panning_strength = 0.0
 attenuation_filter_cutoff_hz = 20500.0
 
