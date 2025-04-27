@@ -45,4 +45,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.4, 0)
 
 [node name="EnemyMovement" type="Node" parent="."]
 script = ExtResource("8_7n326")
+speed = 4
 rotationSpeed = 2.0

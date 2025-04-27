@@ -3,13 +3,13 @@ extends Node
 @export var ProjectileScene: PackedScene
 @export var spawn_height: float = 0.5
 @export var spawn_dist: float = 1.5
+@export var projectile_speed: float = 10
 
 @onready var root = owner.get_parent()
 @onready var characterBody = owner as CharacterBody3D
 @onready var ProjectileSpawn = owner.get_node("ProjectileSpawnPos") as Node3D
 
 var time_since_last_shot = 0
-var shot_cooldown = 0.1
 
 var current_spawn_pos: Vector3
 var current_spawn_dir: Vector3
@@ -25,17 +25,18 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	var current_time: float = (Time.get_ticks_msec() as float) / 1000.0
-	if current_time > (time_since_last_shot + shot_cooldown):
-		spawn_projectile(current_spawn_pos, current_spawn_dir)
+	if current_time > (time_since_last_shot + PlayerStats.EnemyShootCooldown):
+		spawn_projectile(current_spawn_pos, current_spawn_dir, projectile_speed * PlayerStats.EnemyProjectileSpeedMult)
 		time_since_last_shot = current_time
 			
-func spawn_projectile(position: Vector3, dir: Vector3):
+func spawn_projectile(position: Vector3, dir: Vector3, speed: float):
 	if $Ranged_enemy_attack.is_playing() == false:
 		$Ranged_enemy_attack.play()
 	var projectile = ProjectileScene.instantiate()
 	root.add_child(projectile)
 	projectile.set_position(position)
 	projectile.set_projectile_direction(dir)
+	projectile.set_projectile_speed(speed)
 	
 #func get_mouse_direction() -> Vector3:
 	#var mouse_position = get_window().get_mouse_position()

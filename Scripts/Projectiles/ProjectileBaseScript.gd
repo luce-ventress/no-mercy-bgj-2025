@@ -5,6 +5,9 @@ extends Node
 func set_projectile_direction(dir: Vector3):
 	pMovement.set_projectile_direction(dir)
 
+func set_projectile_speed(speed: float):
+	pMovement.set_projectile_speed(speed)
+
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	var parent = get_parent()
