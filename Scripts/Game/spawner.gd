@@ -1,0 +1,18 @@
+extends Node
+
+@export var meleeEnemyScene: PackedScene
+@export var rangedEnemyScene: PackedScene
+
+@onready var PlayerPawn = owner.get_node("%PlayerPawnInstance") as Node3D
+
+
+func getSpawnLocation() -> Vector3:
+	var spawnLocation: Vector3 = Vector3(0.5,0,0)
+	return spawnLocation
+
+func _on_wave_timer_timeout() -> void:
+	var meleeEnemy =meleeEnemyScene.instantiate()
+	var playerPos = PlayerPawn.location()
+	
+	meleeEnemy.initialize(getSpawnLocation(), playerPos)
+	add_child(meleeEnemy)
