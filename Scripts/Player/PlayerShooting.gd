@@ -14,7 +14,7 @@ var time_since_last_shot = 0
 var current_spawn_pos: Vector3
 var current_spawn_dir: Vector3
 
-var playerShootSound = preload("res://Assets/Sound/Player/Player_shoot.wav")
+#var playerShootSound = preload("res://Assets/Sound/Player/Player_shoot.wav")
 
 func _physics_process(_delta: float) -> void:
 	current_spawn_dir = get_mouse_direction()

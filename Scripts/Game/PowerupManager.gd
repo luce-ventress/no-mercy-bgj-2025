@@ -5,6 +5,10 @@ extends Node
 @onready var PowerdownLabel: Label = get_parent().find_child("PowerDown", true, false)
 @onready var SpawnTimer: Timer = get_parent().find_child("SpawnerTimer", true, false)
 
+@onready var PowerupSound = get_parent().find_child("PowerupSound", true, false)
+@onready var PowerdownSound = get_parent().find_child("PowerdownSound", true, false)
+
+
 var dicemax = 100
 var rollToNoMercy = 75
 
@@ -30,6 +34,13 @@ func _process(_delta: float) -> void:
 	if not PowerdownLabel:
 		PowerdownLabel = get_parent().find_child("PowerDown", true, false)
 		return
+		
+	if not PowerupSound:
+		PowerupSound = get_parent().find_child("PowerupSound", true, false)
+		return
+	if not PowerdownSound:
+		PowerdownSound = get_parent().find_child("PowerdownSound", true, false)
+		return
 	
 	time = Time.get_unix_time_from_system() - game_start_time
 	if time >= ((powerups + 1) * seconds_per_powerup):
@@ -50,11 +61,13 @@ func give_powerup():
 	modify_value(true)
 	lable_anim(PowerupLabel)
 	powerups += 1;
+	PowerupSound.play()
 	
 func give_powerdown():
 	modify_value(false)
 	lable_anim(PowerdownLabel)
 	powerups += 1;
+	PowerdownSound.play()
 
 
 func modify_value(boost: bool):

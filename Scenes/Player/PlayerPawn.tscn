@@ -57,20 +57,16 @@ script = ExtResource("1_8km1k")
 script = ExtResource("3_0l0su")
 ProjectileScene = ExtResource("4_3kofw")
 
-[node name="PlayerShoot" type="AudioStreamPlayer3D" parent="PlayerShooting"]
+[node name="PlayerShoot" type="AudioStreamPlayer" parent="PlayerShooting"]
 stream = SubResource("AudioStreamRandomizer_sxlwj")
-volume_db = 8.048
-panning_strength = 0.0
-attenuation_filter_cutoff_hz = 20500.0
+volume_db = -8.0
 
 [node name="PlayerHealth" type="Node" parent="."]
 script = ExtResource("5_vtcqr")
 
-[node name="PlayerHit" type="AudioStreamPlayer3D" parent="PlayerHealth"]
+[node name="PlayerHit" type="AudioStreamPlayer" parent="PlayerHealth"]
 stream = SubResource("AudioStreamRandomizer_bji6c")
-volume_db = -2.0
-panning_strength = 0.0
-attenuation_filter_cutoff_hz = 20500.0
+volume_db = -8.0
 
 [node name="ProjectileSpawnPos" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3981, 0.544613, 0)
