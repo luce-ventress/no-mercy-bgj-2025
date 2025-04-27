@@ -25,6 +25,7 @@ GameManager="*res://Scripts/Game/GameManager.gd"
 
 window/size/viewport_width=800
 window/size/viewport_height=450
+window/stretch/mode="canvas_items"
 
 [input]
 
