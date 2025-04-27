@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 PlayerStats="*res://Scripts/Game/PlayerStats.gd"
 PowerupManager="*res://Scripts/Game/PowerupManager.gd"
+GameManager="*res://Scripts/Game/GameManager.gd"
 
 [display]
 

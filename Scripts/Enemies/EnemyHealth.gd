@@ -1,10 +1,11 @@
 extends Node
 
 @export var HealthPoints: float = 100
+@export var mesh_name: String = "NoMercy_Enemy_Melee"
 
 @onready var root = owner.get_parent().get_node(".")
 @onready var movement = owner.get_node("EnemyMovement")
-@onready var mesh = owner.get_node("NoMercy_Enemy_Melee")
+@onready var mesh = owner.get_node(mesh_name)
 
 var tween
 

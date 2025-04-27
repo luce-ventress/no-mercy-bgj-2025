@@ -1,12 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://dhs00vouueblh"]
+[gd_scene load_steps=12 format=3 uid="uid://dhs00vouueblh"]
 
 [ext_resource type="PackedScene" uid="uid://bontx0lu6c4aw" path="res://Scenes/Player/PlayerPawn.tscn" id="1_l8wyv"]
 [ext_resource type="Texture2D" uid="uid://dw1nyaoxl2v5w" path="res://Assets/Textures/placeholder.png" id="1_ypajb"]
 [ext_resource type="PackedScene" uid="uid://bax3ulu7c3cic" path="res://Scenes/Projectiles/ProjectileBase.tscn" id="3_bv8d1"]
 [ext_resource type="PackedScene" uid="uid://buiud1ylj3qrj" path="res://Scenes/Enemies/MeleeEnemyPawn.tscn" id="4_ptu34"]
 [ext_resource type="PackedScene" uid="uid://6ihp42gfl11b" path="res://Scenes/Enemies/RangedEnemyPawn.tscn" id="5_7bilv"]
-[ext_resource type="Script" uid="uid://bwqto4w5wuh45" path="res://Scripts/Game/spawner.gd" id="6_5gvfm"]
-[ext_resource type="AudioStream" uid="uid://bhdcqwfjah5x0" path="res://Assets/Sound/Music/brnogamejam_2.wav" id="7_xd1hl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bv8d1"]
 albedo_texture = ExtResource("1_ypajb")
@@ -25,6 +23,11 @@ ambient_light_color = Color(1, 1, 1, 1)
 fog_light_energy = 7.05
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_7bilv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7bilv"]
+font_size = 48
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Level1" type="Node3D"]
 
@@ -51,9 +54,6 @@ shadow_enabled = true
 [node name="ProjectileBase" parent="." instance=ExtResource("3_bv8d1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 1)
 
-[node name="MeleeEnemy" parent="." instance=ExtResource("4_ptu34")]
-transform = Transform3D(-0.383661, -0.000960806, 0.923474, -0.000660827, 1, 0.000765891, -0.923474, -0.000316437, -0.383661, 2.81994, -0.1, -0.885988)
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ptu34")
 camera_attributes = SubResource("CameraAttributesPractical_7bilv")
@@ -61,18 +61,31 @@ camera_attributes = SubResource("CameraAttributesPractical_7bilv")
 [node name="RangedEnemy" parent="." instance=ExtResource("5_7bilv")]
 transform = Transform3D(0.999138, 0, 0.0415093, 0, 1, 0, -0.0415093, 0, 0.999138, -0.410775, -0.0999996, -11.9487)
 
-[node name="Spawner" type="Node" parent="."]
-script = ExtResource("6_5gvfm")
-meleeEnemyScene = ExtResource("4_ptu34")
-rangedEnemyScene = ExtResource("5_7bilv")
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Timer" type="Timer" parent="Spawner"]
-wait_time = 3.0
-autostart = true
+[node name="GameTime" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -95.5
+offset_top = 10.0
+offset_right = 95.5
+offset_bottom = 77.0
+grow_horizontal = 2
+text = "10:50:20"
+label_settings = SubResource("LabelSettings_7bilv")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_xd1hl")
-volume_db = -20.0
-autoplay = true
+[node name="MeleeEnemy" parent="." instance=ExtResource("4_ptu34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.85578, 0.0544602, -21.8755)
 
-[connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_timer_timeout"]
+[node name="MeleeEnemy2" parent="." instance=ExtResource("4_ptu34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8441, 0.0544602, -18.7119)
